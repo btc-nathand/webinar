@@ -26,8 +26,14 @@ jobs:
           ContinueOnFail: true
 
       - name: archive_report
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: html-report
-          path: reports.html
+          path: report.html
+
+      - name: archive_report
+        uses: actions/upload-artifact@v3
+        with:
+          name: btc-profile
+          path: profile.epp
       
