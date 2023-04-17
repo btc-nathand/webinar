@@ -2,7 +2,7 @@ startup:
   port: 29268
 profileCreateC:
   codeModelPath: "C_files/code_model.xml"
-vectorImport:
-  importDir: "test_vectors"
+testcaseImport:
+  importDir: "testcases"
 rbtExecution:
   reportPath: "report"
