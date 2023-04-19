@@ -1,0 +1,38 @@
+on: [push]
+
+jobs:
+    BTC-TestSuite-Pipeline:
+        runs-on: self-hosted
+        services:
+            BTC:
+                image: btces/ep:23.1p0
+                ports:
+                    - 29268:8080
+                env:
+                    LICENSE_LOCATION: 27000@srvbtces01.btc-es.local
+                volumes:
+                    - ${{github.workspace}}:/mnt
+        name: Github Actions Workflow With BTC :)
+        steps:
+            - id: checkout
+              name: checkout
+              uses: actions/checkout@v3
+
+            - id: c_pipeline
+              name: c_pipeline
+              uses: btc-nathand/btc-actions@main
+              with: 
+                BTCPipePath: "C_pipeline.yml"
+                ContinueOnFail: true
+            
+            - name: archive_report
+              uses: actions/upload-artifact@v3
+              with:
+                name: html-report
+                path: report.html
+
+            - name: archive_profile
+              uses: actions/upload-artifact@v3
+              with:
+                name: btc-profile
+                path: profile.epp
